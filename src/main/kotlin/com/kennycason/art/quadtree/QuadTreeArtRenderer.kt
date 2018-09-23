@@ -14,10 +14,16 @@ fun main(args: Array<String>) {
 
 class QuadTreeArtRenderer {
 
+//    private val fileName = "profile.jpg"
+//    private val fileName = "bulbasaur.bmp"
     private val fileName = "space_needle.jpg"
+//    private val fileName = "sprout_social.png"
+//    private val fileName = "flower.jpg"
+//    private val fileName = "space_needle.jpg"
+//    private val fileName = "grid.png"
     private val target: BufferedImage = ImageIO.read(Thread.currentThread().contextClassLoader.getResource(fileName))
 
-    private val maxIterations = 15000
+    private val maxIterations = 1000
     private val width = target.width
     private val height = target.height
     private val saveOutput = true
@@ -47,16 +53,15 @@ class QuadTreeArtRenderer {
 //        quadTree.handle()
 //        ImageIO.write(quadTree.canvas, "png", File("output/bulbasaur_${System.currentTimeMillis()}.png"))
 //        panel.repaint()
-
         (0 until maxIterations).forEach {
-            println(i)
+            println("i $i")
             // draw shit
             quadTree.handle()
 
             panel.repaint() // must redraw as that's what actually draws to the canvas
             i++
         }
-        ImageIO.write(quadTree.canvas, "png", File("/tmp/tree_final.png"))
+        ImageIO.write(quadTree.canvas, "png", File("output/${fileName.split(".")[0]}_qt_${System.currentTimeMillis()}.png"))
     }
 }
 

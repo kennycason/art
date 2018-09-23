@@ -15,12 +15,14 @@ class Grid(
     fun size() = location.width * location.height
 
     fun averageColor(target: BufferedImage): Rgb {
-        val totalRgb = Rgb(0, 0,0)
+        val totalRgb = Rgb(0, 0, 0)
+        // println("this: " + this.location)
 
+        var skipped = 0
         (0 until location.width).forEach { x ->
             (0 until location.height).forEach { y ->
                 val rgb = rgbIntToRgb(target.getRGB(location.x + x, location.y + y))
-                //println("rgb: ${rgbIntToRgb(target.getRGB(location.x + x, location.y + y))}")
+                // println("x: ${location.x + x}, y: ${location.y + y}, rgb: ${rgbIntToRgb(target.getRGB(location.x + x, location.y + y))}")
                 totalRgb.r += rgb.r
                 totalRgb.g += rgb.g
                 totalRgb.b += rgb.b
@@ -28,7 +30,7 @@ class Grid(
         }
 
         // compute avg
-        val size = size()
+        val size = size() - skipped
         totalRgb.r /= size
         totalRgb.g /= size
         totalRgb.b /= size
@@ -38,14 +40,15 @@ class Grid(
 
     fun averagePixelError(target: BufferedImage, canvas: BufferedImage): Double {
         var totalError = Rgb(0, 0,0)
-        val averageColor = averageColor(target)
+//        val averageColor = averageColor(target)
 
         (0 until location.width).forEach { x ->
             (0 until location.height).forEach { y ->
-                val rgb = rgbIntToRgb(canvas.getRGB(location.x + x, location.y + y))
-                totalError.r += (rgb.r - averageColor.r) * (rgb.r - averageColor.r)
-                totalError.r += (rgb.g - averageColor.g) * (rgb.g - averageColor.g)
-                totalError.b += (rgb.b - averageColor.b) * (rgb.b - averageColor.b)
+                val canvasRgb = rgbIntToRgb(canvas.getRGB(location.x + x, location.y + y))
+                val targetRgb = rgbIntToRgb(target.getRGB(location.x + x, location.y + y))
+                totalError.r += (canvasRgb.r - targetRgb.r) * (canvasRgb.r - targetRgb.r)
+                totalError.r += (canvasRgb.g - targetRgb.g) * (canvasRgb.g - targetRgb.g)
+                totalError.b += (canvasRgb.b - targetRgb.b) * (canvasRgb.b - targetRgb.b)
             }
         }
 
@@ -57,9 +60,9 @@ class Grid(
     }
 
     private fun rgbIntToRgb(rgb: Int) = Rgb(
-            rgb and 0xFF,
-            (rgb shr 8) and 0xFF,
-            (rgb shr 16) and 0xFF)
+            r = (rgb shr 16) and 0xFF,
+            g =   (rgb shr 8) and 0xFF,
+            b = rgb and 0xFF)
 
     fun rgbToRgbInt(rgb: Rgb) = rgb.b or (rgb.g shl 8) or (rgb.r shl 16)
 }
