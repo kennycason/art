@@ -1,5 +1,7 @@
 package com.kennycason.art.quadtree
 
+import java.awt.Color
+import java.awt.Graphics
 import java.awt.Rectangle
 import java.awt.image.BufferedImage
 
@@ -10,31 +12,9 @@ class Grid(
         var sw: Grid? = null,
         var se: Grid? = null) {
 
+    val size by lazy { location.width * location.height }
+
     fun isChild() = nw == null && ne == null && sw == null && se == null
-
-    fun size() = location.width * location.height
-
-    fun averageColor(target: BufferedImage): Rgb {
-        var totalR = 0L
-        var totalG = 0L
-        var totalB = 0L
-
-        (0 until location.width).forEach { x ->
-            (0 until location.height).forEach { y ->
-                val rgb = rgbIntToRgb(target.getRGB(location.x + x, location.y + y))
-                totalR += rgb.r
-                totalG += rgb.g
-                totalB += rgb.b
-            }
-        }
-
-        // compute avg
-        val size = size()
-        return Rgb(
-                (totalR / size.toFloat()).toInt(),
-                (totalG / size.toFloat()).toInt(),
-                (totalB / size.toFloat()).toInt())
-    }
 
     fun squaredPixelError(target: BufferedImage, canvas: BufferedImage): Double {
         var totalR = 0.0
@@ -57,10 +37,45 @@ class Grid(
                 Math.sqrt(totalB)) / 3.0
     }
 
+    fun fill(target: BufferedImage, canvasGraphics: Graphics) {
+        val averageColorRgb = averageColor(target)
+        canvasGraphics.color = Color(averageColorRgb.r, averageColorRgb.g, averageColorRgb.b)
+        canvasGraphics.fillRect(location.x, location.y, location.width, location.height)
+    }
+
+    fun drawGridBorder(target: BufferedImage, canvasGraphics: Graphics) {
+        if (size >= 3) {
+            canvasGraphics.color = Color.BLACK
+            canvasGraphics.drawRect(location.x, location.y, location.width, location.height)
+        }
+    }
+
+    private fun averageColor(target: BufferedImage): Rgb {
+        var totalR = 0L
+        var totalG = 0L
+        var totalB = 0L
+
+        (0 until location.width).forEach { x ->
+            (0 until location.height).forEach { y ->
+                val rgb = rgbIntToRgb(target.getRGB(location.x + x, location.y + y))
+                totalR += rgb.r
+                totalG += rgb.g
+                totalB += rgb.b
+            }
+        }
+
+        // compute avg
+        return Rgb(
+                (totalR / size.toFloat()).toInt(),
+                (totalG / size.toFloat()).toInt(),
+                (totalB / size.toFloat()).toInt())
+    }
+
+
     private fun rgbIntToRgb(rgb: Int) = Rgb(
             r = (rgb shr 16) and 0xFF,
             g =   (rgb shr 8) and 0xFF,
             b = rgb and 0xFF)
 
-    fun rgbToRgbInt(rgb: Rgb) = rgb.b or (rgb.g shl 8) or (rgb.r shl 16)
+    private fun rgbToRgbInt(rgb: Rgb) = rgb.b or (rgb.g shl 8) or (rgb.r shl 16)
 }

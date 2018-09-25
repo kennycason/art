@@ -15,25 +15,23 @@ fun main(args: Array<String>) {
 class QuadTreeArtRenderer {
 
     private val fileName =
-            "profile.jpg"
+//            "profile.jpg"
+            "profile_512px.jpg"
 //            "bulbasaur.bmp"
 //            "sprout_social.png"
 //            "flower.jpg"
 //            "space_needle.jpg"
 //            "jing.jpg"
 //            "moon_apollo.jpg"
-//            "moon_first_small.jpg"
-    private val target: BufferedImage = ImageIO.read(Thread.currentThread().contextClassLoader.getResource(
-        fileName
-))
-
-    private val maxIterations = 2500
-    private val minSplitSize = 2
+//            "moon_first.jpg"
+//            "jupiter.jpg"
+    private val target: BufferedImage = ImageIO.read(Thread.currentThread().contextClassLoader.getResource(fileName))
+    private val maxIterations = 1500
     private val width = target.width
+    private val quadTree = QuadTree(target, minSplitSize = 8, randomProbability = 50)
     private val height = target.height
     private val saveOutput = true
     private val saveOutputFrequency = 25
-    private val quadTree = QuadTree(target, minSplitSize = minSplitSize, randomProbability = 5)
 
     fun run() {
         val frame = JFrame()
@@ -64,6 +62,8 @@ class QuadTreeArtRenderer {
             i++
         }
         ImageIO.write(quadTree.canvas, "png", File("output/quad_tree/${fileName.split(".")[0]}_${System.currentTimeMillis()}.png"))
+        quadTree.drawGridBorders()
+        ImageIO.write(quadTree.canvas, "png", File("output/quad_tree/${fileName.split(".")[0]}_${System.currentTimeMillis()}_borders.png"))
     }
 }
 

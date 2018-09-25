@@ -8,6 +8,7 @@ import java.util.*
 class QuadTree(private val target: BufferedImage,
                private val minSplitSize: Int = 2,
                private val randomProbability: Int = 0 /* 0 to 100 */) {
+
     val canvas: BufferedImage = BufferedImage(target.width, target.height, BufferedImage.TYPE_INT_ARGB)
     private val random = Random()
     private val canvasGraphics = canvas.graphics
@@ -18,12 +19,10 @@ class QuadTree(private val target: BufferedImage,
 
     private val root: Grid = Grid(Rectangle(0, 0, canvas.width, canvas.height))
 
-    fun handle() {
-        handle(root)
-    }
+    fun handle() = handle(root)
 
     private fun handle(grid: Grid) {
-        if (grid.size() <= minSplitSize) {
+        if (grid.size <= minSplitSize) {
             return
         }
 
@@ -32,11 +31,28 @@ class QuadTree(private val target: BufferedImage,
         }
 
         if (random.nextInt(100) < randomProbability) {
+            // randomness can help get out of some local minima
             handle(getRandomGrid(grid))
         }
         else {
             handle(getMaxErrorGrid(grid))
         }
+    }
+
+    fun drawGridBorders() = drawGridBorders(root)
+
+    private fun drawGridBorders(grid: Grid) {
+        if (grid.isChild()) { return }
+
+        grid.sw?.drawGridBorder(target, canvasGraphics)
+        grid.se?.drawGridBorder(target, canvasGraphics)
+        grid.nw?.drawGridBorder(target, canvasGraphics)
+        grid.ne?.drawGridBorder(target, canvasGraphics)
+
+        drawGridBorders(grid.sw!!)
+        drawGridBorders(grid.se!!)
+        drawGridBorders(grid.nw!!)
+        drawGridBorders(grid.ne!!)
     }
 
     private fun split(grid: Grid) {
@@ -48,10 +64,10 @@ class QuadTree(private val target: BufferedImage,
         grid.sw = Grid(resizeIfNeeded(Rectangle(grid.location.x,         grid.location.y + height, width, height)))
         grid.se = Grid(resizeIfNeeded(Rectangle(grid.location.x + width, grid.location.y + height, width, height)))
 
-        fillGrid(grid.sw!!)
-        fillGrid(grid.se!!)
-        fillGrid(grid.nw!!)
-        fillGrid(grid.ne!!)
+        grid.sw?.fill(target, canvasGraphics)
+        grid.se?.fill(target, canvasGraphics)
+        grid.nw?.fill(target, canvasGraphics)
+        grid.ne?.fill(target, canvasGraphics)
     }
 
     private fun resizeIfNeeded(r: Rectangle): Rectangle {
@@ -95,12 +111,6 @@ class QuadTree(private val target: BufferedImage,
         }
 
         return maxErrorGrid
-    }
-
-    private fun fillGrid(grid: Grid) {
-        val averageColorRgb = grid.averageColor(target)
-        canvasGraphics.color = Color(averageColorRgb.r, averageColorRgb.g, averageColorRgb.b)
-        canvasGraphics.fillRect(grid.location.x, grid.location.y, grid.location.width, grid.location.height)
     }
 
 }
