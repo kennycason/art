@@ -66,7 +66,7 @@ class AlienTreeRenderer {
             panel.repaint() // must redraw as that's what actually draws to the canvas
             i++
         }
-        ImageIO.write(canvas, "png", File("output/alien_tree_${System.currentTimeMillis()}.png"))
+        ImageIO.write(canvas, "png", File("output/alien_tree/${System.currentTimeMillis()}.png"))
     }
 
 }

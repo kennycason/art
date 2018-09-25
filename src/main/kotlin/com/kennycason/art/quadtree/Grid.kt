@@ -15,48 +15,46 @@ class Grid(
     fun size() = location.width * location.height
 
     fun averageColor(target: BufferedImage): Rgb {
-        val totalRgb = Rgb(0, 0, 0)
-        // println("this: " + this.location)
+        var totalR = 0L
+        var totalG = 0L
+        var totalB = 0L
 
-        var skipped = 0
         (0 until location.width).forEach { x ->
             (0 until location.height).forEach { y ->
                 val rgb = rgbIntToRgb(target.getRGB(location.x + x, location.y + y))
-                // println("x: ${location.x + x}, y: ${location.y + y}, rgb: ${rgbIntToRgb(target.getRGB(location.x + x, location.y + y))}")
-                totalRgb.r += rgb.r
-                totalRgb.g += rgb.g
-                totalRgb.b += rgb.b
-            }
-        }
-
-        // compute avg
-        val size = size() - skipped
-        totalRgb.r /= size
-        totalRgb.g /= size
-        totalRgb.b /= size
-
-        return totalRgb
-    }
-
-    fun averagePixelError(target: BufferedImage, canvas: BufferedImage): Double {
-        var totalError = Rgb(0, 0,0)
-//        val averageColor = averageColor(target)
-
-        (0 until location.width).forEach { x ->
-            (0 until location.height).forEach { y ->
-                val canvasRgb = rgbIntToRgb(canvas.getRGB(location.x + x, location.y + y))
-                val targetRgb = rgbIntToRgb(target.getRGB(location.x + x, location.y + y))
-                totalError.r += (canvasRgb.r - targetRgb.r) * (canvasRgb.r - targetRgb.r)
-                totalError.r += (canvasRgb.g - targetRgb.g) * (canvasRgb.g - targetRgb.g)
-                totalError.b += (canvasRgb.b - targetRgb.b) * (canvasRgb.b - targetRgb.b)
+                totalR += rgb.r
+                totalG += rgb.g
+                totalB += rgb.b
             }
         }
 
         // compute avg
         val size = size()
-        return ((totalError.r / size.toFloat()) +
-                (totalError.g / size.toFloat()) +
-                (totalError.b / size.toFloat())) / 3.0
+        return Rgb(
+                (totalR / size.toFloat()).toInt(),
+                (totalG / size.toFloat()).toInt(),
+                (totalB / size.toFloat()).toInt())
+    }
+
+    fun squaredPixelError(target: BufferedImage, canvas: BufferedImage): Double {
+        var totalR = 0.0
+        var totalG = 0.0
+        var totalB = 0.0
+
+        (0 until location.width).forEach { x ->
+            (0 until location.height).forEach { y ->
+                val canvasRgb = rgbIntToRgb(canvas.getRGB(location.x + x, location.y + y))
+                val targetRgb = rgbIntToRgb(target.getRGB(location.x + x, location.y + y))
+                totalR += (canvasRgb.r - targetRgb.r) * (canvasRgb.r - targetRgb.r)
+                totalG += (canvasRgb.g - targetRgb.g) * (canvasRgb.g - targetRgb.g)
+                totalB += (canvasRgb.b - targetRgb.b) * (canvasRgb.b - targetRgb.b)
+            }
+        }
+
+        // compute avg
+        return (Math.sqrt(totalR) +
+                Math.sqrt(totalG) +
+                Math.sqrt(totalB)) / 3.0
     }
 
     private fun rgbIntToRgb(rgb: Int) = Rgb(
