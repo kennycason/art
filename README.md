@@ -22,6 +22,7 @@ Notes:
 
 My Profile picture. (left: original, middle: without grid borders, right: with grid borders)
 <img src="https://github.com/kennycason/art/blob/master/src/main/resources/profile_512px.jpg?raw=true" width="33%"/><img src="https://github.com/kennycason/art/blob/master/output/quad_tree/profile_512px_1537867958530.png?raw=true" width="33%"/><img src="https://github.com/kennycason/art/blob/master/output/quad_tree/profile_512px_1537867958556_borders.png?raw=true" width="33%"/>
+<img src="https://github.com/kennycason/art/blob/master/output/quad_tree/profile_512px_1537872534697.png?raw=true" width="50%"/><img src="https://github.com/kennycason/art/blob/master/output/quad_tree/profile_512px_1537872534720_borders.png?raw=true" width="50%"/>
 <img src="https://github.com/kennycason/art/blob/master/output/quad_tree/profile_512px_1537867958556_borders.png?raw=true" width="100%"/>
 <img src="https://github.com/kennycason/art/blob/master/output/quad_tree/jing_1537868439570_borders.png?raw=true" width="50%"/><img src="https://github.com/kennycason/art/blob/master/output/quad_tree/moon_first_1537868377501_borders.png?raw=true" width="50%"/>
 <img src="https://github.com/kennycason/art/blob/master/output/quad_tree/moon_apollo_1537869132610_borders.png?raw=true"/>
