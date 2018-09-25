@@ -29,9 +29,16 @@ My Profile picture. (left: original, middle: without grid borders, right: with g
 <img src="https://github.com/kennycason/art/blob/master/output/quad_tree/space_needle_1537868432376_borders.png?raw=true" width="75%"/><img src="https://github.com/kennycason/art/blob/master/output/quad_tree/bulbasaur_1537794420319.png" width="25%"/>
 <img src="https://github.com/kennycason/art/blob/master/output/quad_tree/flower_1537808765438.png?raw=true"/>
 
+### Jon Conway's Game of Life 
+
+A modification of John Conway's Game of Life adapted to images.
+
+<img src="https://github.com/kennycason/art/blob/master/output/image_gol/profile_512px.jpg_gol_40.png?raw=true"/>
+<img src="https://github.com/kennycason/art/blob/master/output/image_gol/flower.jpg_gol_150.png?raw=true"/>
 
 ## Random Alien Tree
 
 Nothing Pretty, just randomly drawing circles while following random branching vectors.
 
 <img src="https://github.com/kennycason/art/blob/master/output/alien_tree/1537527022883.png?raw=true"/>
+
