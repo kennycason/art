@@ -1,5 +1,7 @@
 package com.kennycason.art.quadtree
 
+import com.kennycason.art.util.Colors.rgbIntToRgb
+import com.kennycason.art.util.Rgb
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Rectangle
@@ -77,11 +79,4 @@ class Grid(
                 (totalB / size.toFloat()).toInt())
     }
 
-
-    private fun rgbIntToRgb(rgb: Int) = Rgb(
-            r = (rgb shr 16) and 0xFF,
-            g =   (rgb shr 8) and 0xFF,
-            b = rgb and 0xFF)
-
-    private fun rgbToRgbInt(rgb: Rgb) = rgb.b or (rgb.g shl 8) or (rgb.r shl 16)
 }
