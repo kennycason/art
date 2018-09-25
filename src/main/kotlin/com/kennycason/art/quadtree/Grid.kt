@@ -37,16 +37,22 @@ class Grid(
                 Math.sqrt(totalB)) / 3.0
     }
 
-    fun fill(target: BufferedImage, canvasGraphics: Graphics) {
+    fun fill(target: BufferedImage, canvasGraphics: Graphics, shape: Shape) {
         val averageColorRgb = averageColor(target)
         canvasGraphics.color = Color(averageColorRgb.r, averageColorRgb.g, averageColorRgb.b)
-        canvasGraphics.fillRect(location.x, location.y, location.width, location.height)
+        when (shape) {
+            Shape.RECTANGLE -> canvasGraphics.fillRect(location.x, location.y, location.width, location.height)
+            Shape.OVAL -> canvasGraphics.fillOval(location.x, location.y, location.width, location.height)
+        }
     }
 
-    fun drawGridBorder(target: BufferedImage, canvasGraphics: Graphics) {
+    fun drawGridBorder(target: BufferedImage, canvasGraphics: Graphics, shape: Shape) {
         if (size >= 3) {
             canvasGraphics.color = Color.BLACK
-            canvasGraphics.drawRect(location.x, location.y, location.width, location.height)
+            when (shape) {
+                Shape.RECTANGLE -> canvasGraphics.drawRect(location.x, location.y, location.width, location.height)
+                Shape.OVAL -> if (isChild()) { canvasGraphics.drawOval(location.x, location.y, location.width, location.height) }
+            }
         }
     }
 

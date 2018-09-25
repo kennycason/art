@@ -7,7 +7,8 @@ import java.util.*
 
 class QuadTree(private val target: BufferedImage,
                private val minSplitSize: Int = 2,
-               private val randomProbability: Int = 0 /* 0 to 100 */) {
+               private val randomProbability: Int = 0, /* 0 to 100 */
+               private val shape: Shape = Shape.RECTANGLE) {
 
     val canvas: BufferedImage = BufferedImage(target.width, target.height, BufferedImage.TYPE_INT_ARGB)
     private val random = Random()
@@ -44,10 +45,10 @@ class QuadTree(private val target: BufferedImage,
     private fun drawGridBorders(grid: Grid) {
         if (grid.isChild()) { return }
 
-        grid.sw?.drawGridBorder(target, canvasGraphics)
-        grid.se?.drawGridBorder(target, canvasGraphics)
-        grid.nw?.drawGridBorder(target, canvasGraphics)
-        grid.ne?.drawGridBorder(target, canvasGraphics)
+        grid.sw?.drawGridBorder(target, canvasGraphics, shape)
+        grid.se?.drawGridBorder(target, canvasGraphics, shape)
+        grid.nw?.drawGridBorder(target, canvasGraphics, shape)
+        grid.ne?.drawGridBorder(target, canvasGraphics, shape)
 
         drawGridBorders(grid.sw!!)
         drawGridBorders(grid.se!!)
@@ -64,10 +65,10 @@ class QuadTree(private val target: BufferedImage,
         grid.sw = Grid(resizeIfNeeded(Rectangle(grid.location.x,         grid.location.y + height, width, height)))
         grid.se = Grid(resizeIfNeeded(Rectangle(grid.location.x + width, grid.location.y + height, width, height)))
 
-        grid.sw?.fill(target, canvasGraphics)
-        grid.se?.fill(target, canvasGraphics)
-        grid.nw?.fill(target, canvasGraphics)
-        grid.ne?.fill(target, canvasGraphics)
+        grid.sw?.fill(target, canvasGraphics, shape)
+        grid.se?.fill(target, canvasGraphics, shape)
+        grid.nw?.fill(target, canvasGraphics, shape)
+        grid.ne?.fill(target, canvasGraphics, shape)
     }
 
     private fun resizeIfNeeded(r: Rectangle): Rectangle {
