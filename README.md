@@ -7,11 +7,11 @@ Various Generative Art algorithms in Kotlin.
 This art form recursively partitions an image into quadrants, towards lower entropy.
 
 Steps:
-1. Partiion the image into four quadrants.  
+1. Partition the image into four quadrants.  
 2. Color each quadrant based on the average color of the pixels in the target image.
 3. Compute each quadrant's squared error between the original target image and the generated image.
 4. Select the quadrant with the highest error and recur into it. 
-5. Repate from step one, using the current highest error quadrant.
+5. Repeat from step one, using the current highest error quadrant.
 
 Notes:
 * To avoid local minima, and/or force the algorithm to focus on areas of high entropy, there is a randomness variable (0 - 100%) to help the algorithm generate "better" results. The default value is 5%.
