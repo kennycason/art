@@ -42,6 +42,11 @@ A modification of John Conways' Game of Life adaptd to a graph where every node 
 
 <img src="https://github.com/kennycason/art/blob/master/output/graph_gol/gol_4_4.png?raw=true"/>
 
+## MandelBulb 2D Slices
+
+<img src="https://github.com/kennycason/art/blob/master/output/mandelbulb/mandelbulb.png?raw=true"/>
+
+
 ## Random Alien Tree
 
 Nothing Pretty, just randomly drawing circles while following random branching vectors.
