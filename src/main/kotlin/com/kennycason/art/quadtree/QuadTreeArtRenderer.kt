@@ -30,7 +30,7 @@ class QuadTreeArtRenderer {
     private val width = target.width
     private val quadTree = QuadTree(target, minSplitSize = 8, randomProbability = 5, shape = Shape.RECTANGLE)
     private val height = target.height
-    private val saveOutput = true
+    private val saveOutput = false
     private val saveOutputFrequency = 25
 
     fun run() {

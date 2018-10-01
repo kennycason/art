@@ -152,7 +152,7 @@ class ImageGameOfLifeRenderLoop {
         }
     }
 
-    // count number of alive cells. "alive" is defined be being greater than current pixel
+    // count number of state cells. "state" is defined be being greater than current pixel
     private fun getNeighbors(x: Int, y: Int): Int {
         var alive = 0
         val point = get(x, y)
