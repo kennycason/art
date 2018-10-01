@@ -4,7 +4,7 @@ Various Generative Art algorithms in Kotlin.
 
 ## Quad Tree Entropy
 
-This art form recursively partions an image into quadrants, towards lower entropy.
+This art form recursively partitions an image into quadrants, towards lower entropy.
 
 Steps:
 1. Partiion the image into four quadrants.  
@@ -29,12 +29,18 @@ My Profile picture. (left: original, middle: without grid borders, right: with g
 <img src="https://github.com/kennycason/art/blob/master/output/quad_tree/space_needle_1537868432376_borders.png?raw=true" width="75%"/><img src="https://github.com/kennycason/art/blob/master/output/quad_tree/bulbasaur_1537794420319.png" width="25%"/>
 <img src="https://github.com/kennycason/art/blob/master/output/quad_tree/flower_1537808765438.png?raw=true"/>
 
-### Jon Conway's Game of Life 
+### John Conway's Game of Life on Images
 
 A modification of John Conway's Game of Life adapted to images.
 
 <img src="https://github.com/kennycason/art/blob/master/output/image_gol/profile_512px.jpg_gol_40.png?raw=true"/>
 <img src="https://github.com/kennycason/art/blob/master/output/image_gol/flower.jpg_gol_150.png?raw=true"/>
+
+## John Conway's Game of Life - Graph 
+
+A modification of John Conways' Game of Life adaptd to a graph where every node is connected to the 8 nearest neighbors.
+
+<img src="https://github.com/kennycason/art/blob/master/output/graph_gol/gol_4_4.png?raw=true"/>
 
 ## Random Alien Tree
 
