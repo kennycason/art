@@ -14,6 +14,8 @@ class Grid(
         var sw: Grid? = null,
         var se: Grid? = null) {
 
+    private val stepSize = 4
+
     val size by lazy { location.width * location.height }
 
     fun isChild() = nw == null && ne == null && sw == null && se == null
@@ -23,8 +25,8 @@ class Grid(
         var totalG = 0.0
         var totalB = 0.0
 
-        (0 until location.width).forEach { x ->
-            (0 until location.height).forEach { y ->
+        (0 until location.width step stepSize).forEach { x ->
+            (0 until location.height step stepSize).forEach { y ->
                 val canvasRgb = rgbIntToRgb(canvas.getRGB(location.x + x, location.y + y))
                 val targetRgb = rgbIntToRgb(target.getRGB(location.x + x, location.y + y))
                 totalR += (canvasRgb.r - targetRgb.r) * (canvasRgb.r - targetRgb.r)

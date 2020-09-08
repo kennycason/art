@@ -16,7 +16,8 @@ class QuadTreeArtRenderer {
 
     private val fileName =
 //            "profile.jpg"
-            "profile_512px.jpg"
+//            "profile_512px.jpg"
+            "IMG_0209.PNG"
 //            "bulbasaur.bmp"
 //            "sprout_social.png"
 //            "flower.jpg"
@@ -28,8 +29,8 @@ class QuadTreeArtRenderer {
     private val target: BufferedImage = ImageIO.read(Thread.currentThread().contextClassLoader.getResource(fileName))
     private val maxIterations = 20000
     private val width = target.width
-    private val quadTree = QuadTree(target, minSplitSize = 2, randomProbability = 5, shape = Shape.RECTANGLE)
     private val height = target.height
+    private val quadTree = QuadTree(target, minSplitSize = 8, randomProbability = 5, shape = Shape.RECTANGLE)
     private val saveOutput = false
     private val saveOutputFrequency = 25
 
