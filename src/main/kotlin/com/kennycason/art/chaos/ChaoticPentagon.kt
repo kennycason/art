@@ -26,7 +26,7 @@ class ChaoticPentagon {
     var i = 0
     // bottom
     val a = Point(0.3f * scale, 0.1f * scale)
-    val b = Point(0.6f * scale, 0.1f * scale)
+    val b = Point(0.7f * scale, 0.1f * scale)
     // top
     val c = Point(0.45f * scale, 0.9f * scale)
     // middle
@@ -47,11 +47,11 @@ class ChaoticPentagon {
         else -> throw IllegalStateException("n must be in range [0, 4]")
     }
 
-    private fun quarterPoint(a: Point, b: Point) = Point((a.x + b.x) / 4f, (a.y + b.y) / 4f)
+    private fun quarterPoint(a: Point, b: Point) = Point((a.x + b.x) / 3f, (a.y + b.y) / 3f)
 
     fun run() {
         val frame = JFrame()
-        frame.setBounds(100, 100, 800, 600)
+        frame.setBounds(100, 100, width, height)
         frame.isResizable = false
         frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         frame.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
