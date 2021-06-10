@@ -92,7 +92,7 @@ class Mandelbrot {
                 pixels[x][y] = (iter or (iter shl 7)) * 4
             }
         }
-        sx -= Math.PI * 2 + 1.25
+        sx -= Math.PI * 2 + 1.45
         sy -= 1.9
         ZOOM += 10
     }
