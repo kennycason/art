@@ -1,4 +1,4 @@
-package com.kennycason.art.util
+package com.kennycason.art.lib.color
 
 import java.awt.Color
 

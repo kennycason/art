@@ -1,7 +1,7 @@
 package com.kennycason.art.quadtree
 
-import com.kennycason.art.util.Colors.rgbIntToRgb
-import com.kennycason.art.util.Rgb
+import com.kennycason.art.lib.color.Colors.rgbIntToRgb
+import com.kennycason.art.lib.color.Rgb
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Rectangle

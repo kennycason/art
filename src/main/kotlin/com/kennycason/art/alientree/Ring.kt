@@ -1,5 +1,6 @@
 package com.kennycason.art.alientree
 
+import com.kennycason.art.lib.geometry.Point
 import java.awt.Color
 
 // represents a single ring in the tree

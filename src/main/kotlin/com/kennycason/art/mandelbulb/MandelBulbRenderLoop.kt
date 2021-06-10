@@ -103,7 +103,7 @@ class MandelBulbRenderLoop {
                     }
                 }
                 g.drawImage(canvas, 0, 0, width, height, this)
-                ImageIO.write(canvas, "png", File("output/mandelbulb/mandelbulb_${System.currentTimeMillis()}.png"))
+               // ImageIO.write(canvas, "png", File("output/mandelbulb/mandelbulb_${System.currentTimeMillis()}.png"))
             }
         }
         frame.add(panel)

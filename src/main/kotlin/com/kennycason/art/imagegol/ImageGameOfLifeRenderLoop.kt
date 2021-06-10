@@ -1,7 +1,7 @@
 package com.kennycason.art.imagegol
 
-import com.kennycason.art.util.Colors
-import com.kennycason.art.util.Rgb
+import com.kennycason.art.lib.color.Colors
+import com.kennycason.art.lib.color.Rgb
 import java.awt.Graphics
 import java.awt.image.BufferedImage
 import java.io.File

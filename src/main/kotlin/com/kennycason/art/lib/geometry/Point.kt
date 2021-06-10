@@ -1,3 +1,3 @@
-package com.kennycason.art.alientree
+package com.kennycason.art.lib.geometry
 
 data class Point(val x: Float, val y: Float)
